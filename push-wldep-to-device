@@ -1,0 +1,4 @@
+#!/bin/bash
+adb shell am force-stop com.wavelink.velocity
+adb push ./*.wldep /sdcard/Android/data/com.wavelink.velocity/files
+adb shell monkey -p com.wavelink.velocity 1
