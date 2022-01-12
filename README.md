@@ -7,10 +7,10 @@ Prerequisites
 ===
 In order to successfully run this demo you need the following:
 
-1. A Physical ST1 device. Contact info@six-15.com.
+1. A physical ST1 device. Contact info@six-15.com.
 1. An Android phone
 1. Velocity app installed. [Play Store](https://play.google.com/store/apps/details?id=com.wavelink.velocity).
-1.Six15 ST1 app installed. [Play Store](https://play.google.com/store/apps/details?id=com.six15.st1_connect).
+1. Six15 ST1 app installed. [Play Store](https://play.google.com/store/apps/details?id=com.six15.st1_connect).
 
 Architecture
 ===
@@ -32,25 +32,25 @@ An integrator would only need to take the following steps to customize this solu
 
 Using the Velocity Console and a text editor:
 
-1. Add the script [hud_sendText_on_scope.js](hud_sendText_on_scope.js) to the project, and link it to the session scope.
+1. Add the script [six15_hud_sendText_on_scope.js](six15_hud_sendText_on_scope.js) to the project, and link it to the session scope.
 1. Customize [six15_hud_getSendTextData.js](six15_hud_getSendTextData.js) to extract the desired text.
     - The behavior taken will likely change based on the current page URL. See Velocity's doc about [scopes](https://help.ivanti.com/wl/help/en_US/Velocity/1.2.109/admin/settingScopes.htm) for Web.
-    - Extract strings from the website. Use Document.getElementById(...).innerText, or more complex JavaScript. See the the existing file for more examples.
+    - Extract strings from the website. Use document.getElementById(...).innerText, or more complex JavaScript. See the the existing file for more examples.
     - Customized the colors, formatting, ect... as defined by Six15's [Intent Interface](https://six15.engineering/intent_interface/). 
 1. Add the modified script [six15_hud_getSendTextData.js](six15_hud_getSendTextData.js) as a resource in your Velocity project.
 
 To test or re-deploy the modified project:
 
 1. Install and setup the Six15 ST1 app.
-1. Re-deploy the wldep file on your Android device.
+1. Re-deploy the updated wldep file into the Velocity app on your Android device.
 
 Important Files
 ===
-| File Name                     | Description                                                                                                                                                                                                     |
-|-------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Six15_Velocity_Web_Demo.zip   | Project for [Velocity Console](https://www.wavelink.com/download-velocity_enterprise-app-modernization-software/).                                                                                              |
-| Six15_Velocity_Web_Demo.wldep | Velocity Deployment file. This file can be imported onto an Android device to run the demo as-is.                                                                                                               |
-| docs                          | Example website which is rendered by Velocity. This site is hosted on GitHub Pages [here](https://six15-technologies.github.io/velocity-web-static-site/).                                                      |
-| hud_sendText_on_scope.js      | Source code to Velocity script which injects [six15_hud_getSendTextData.js](six15_hud_getSendTextData.js) into the website.                                                                                     |
-| six15_hud_getSendTextData.js  | Source code to JavaScript file which is injected into site.                                                                                                                                                     |
-| push-wldep-to-device          | Shell script to automatically push wldep files onto an Android device during development. Android File Transfer can also be used by copying he wldep file into /sdcard/Android/data/com.wavelink.velocity/files |
+| File Name                      | Description                                                                                                                                                                                                     |
+|--------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Six15_Velocity_Web_Demo.zip    | Example project for [Velocity Console](https://www.wavelink.com/download-velocity_enterprise-app-modernization-software/).                                                                                      |
+| Six15_Velocity_Web_Demo.wldep  | Example project Velocity deployment file. This file can be imported onto an Android device to run the demo.                                                                                                     |
+| docs                           | Example website which is rendered by Velocity. This site is hosted on GitHub Pages [here](https://six15-technologies.github.io/velocity-web-static-site/).                                                      |
+| six15_hud_sendText_on_scope.js | Source code to Velocity script which injects [six15_hud_getSendTextData.js](six15_hud_getSendTextData.js) into the website.                                                                                     |
+| six15_hud_getSendTextData.js   | Source code to JavaScript file which is injected into site.                                                                                                                                                     |
+| push-wldep-to-device           | Shell script to automatically push wldep files onto an Android device during development. Android File Transfer can also be used by copying he wldep file into /sdcard/Android/data/com.wavelink.velocity/files |

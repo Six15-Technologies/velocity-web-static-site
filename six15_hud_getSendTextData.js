@@ -1,9 +1,14 @@
+//This is a JavaScript file which is injected into every website.
+//It should be added as a Velocity resource under the six15_hud_sendText_on_scope.js script. 
+
 function six15_hud_hasLoaded() {
+    //This function is used by the Velocity script to determine when this JavaScript
+    //file is loaded into the webpage's runtime.
     return true;
 }
 
 function six15_hud_getSendTextData(scopeName) {
-    scopeName = scopeName.trim(); //Not really sure why this is needed...
+    scopeName = scopeName.trim(); //This seems to be needed in some cases.
 
     if (scopeName == "@velocity-web-static-site/" || scopeName.startsWith("@velocity-web-static-site/scan_location_")) {
         return getLocationScreen();
