@@ -3,6 +3,7 @@ function six15_hud_hasLoaded() {
 }
 
 function six15_hud_getSendTextData(scopeName) {
+    scopeName = scopeName.trim(); //Not really sure why this is needed...
 
     if (scopeName == "@velocity-web-static-site/" || scopeName.startsWith("@velocity-web-static-site/scan_location_")) {
         return getLocationScreen();
