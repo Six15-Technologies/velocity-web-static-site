@@ -2,6 +2,8 @@ Introduction
 ===
 This repository demonstrates how a [Velocity](https://www.ivanti.com/products/velocity) deployed website can be HUD Enabled with [Six15's ST1](https://www.six-15.com/enterprise-hud).
 
+Be sure to see our developer documentation on [six15.engineering](https://six15.engineering), specifically the sections about the
+[Intent Interface](https://six15.engineering/intent_interface/) and [Velocity Web Integration](https://six15.engineering/intent_interface/#velocity-web).
 
 Prerequisites
 ===
@@ -22,8 +24,14 @@ Six15's "Six15 ST1" app exposes the [Intent Interface](https://six15.engineering
 
 Putting both together allows the Velocity scripting API to extract useful information from a website and display it on the ST1 HUD.
 
+
 No changes need to be made on the original website.
 Devices without the Six15 ST1 app or users without a physical ST1 can continue to work as if nothing changed.
+
+Sequence Diagram
+===
+![](https://mermaid.ink/img/eyJjb2RlIjoic2VxdWVuY2VEaWFncmFtXG4gICAgcGFydGljaXBhbnQgdmEgYXMgVmVsb2NpdHkgQXBwXG4gICAgcGFydGljaXBhbnQgdnNyIGFzIFZlbG9jaXR5IFNjcmlwdFxuICAgIHBhcnRpY2lwYW50IHdqc3IgYXMgSW5qZWN0ZWQgSmF2YVNjcmlwdFxuICAgIHBhcnRpY2lwYW50IHdlYiBhcyBXZWJQYWdlXG4gICAgcGFydGljaXBhbnQgaWkgYXMgSW50ZW50IEludGVyZmFjZVxuICAgIHBhcnRpY2lwYW50IHN0MSBhcyBTaXgxNSBTVDFcblxuICAgIGFjdGl2YXRlIHN0MVxuICAgIGFjdGl2YXRlIHZhXG4gICAgTm90ZSBvdmVyIHZhOiBMYXVuY2ggRXhhbXBsZSBQcm9qZWN0XG5cbiAgICB2YS0-Pit2c3I6IGVudGVyIFwic2Vzc2lvblwiIHNjb3BlXG4gICAgdnNyLT4-K2lpOiBzdGFydCBJbnRlbnQgSW50ZXJmYWNlXG4gICAgaWktPj5zdDE6IGNsZWFyIGRpc3BsYXlcbiAgICBsb29wXG4gICAgICAgIHZhLT4-K3dlYjogbG9hZCB3ZWJwYWdlXG4gICAgICAgIHZhLT4-dnNyOiBvbiBFbnRlclNjb3BlIGV2ZW50XG4gICAgICAgIHZzci0-Pit3anNyOiBpbmplY3QgZ2V0VGV4dCBzY3JpcHRcbiAgICAgICAgd2pzci0-PndlYjogcmVhZCB0ZXh0IGZyb20gcGFnZVxuICAgICAgICB3ZWItPj53anNyOiByZWNlaXZlIGJhY2sgdGV4dFxuICAgICAgICBOb3RlIG92ZXIgd2pzcjogVXNlIHRleHQgdG8gZ2VuZXJhdGUgSFVEIHNjcmVlblxuICAgICAgICB3anNyLT4-dnNyOiByZXR1cm4gSW50ZW50IEludGVyZmFjZSBkYXRhXG4gICAgICAgIHZzci0-PmlpOmJyb2FkY2FzdCBJbnRlbnQgSW50ZXJmYWNlIGRhdGFcbiAgICAgICAgaWktPj5zdDE6ZGlzcGxheSBpbWFnZVxuICAgICAgICBub3RlIG92ZXIgc3QxOiBEaXNwbGF5aW5nIEltYWdlXG4gICAgICAgIG5vdGUgb3ZlciB3ZWIsd2pzcjpVc2VyIGV2ZW50dWFsbHkgbmF2aWdhdGVzIGF3YXlcbiAgICAgICAgd2ViLT4-LXZhOiBjbG9zZSB3ZWJwYWdlXG4gICAgICAgIGRlYWN0aXZhdGUgd2pzclxuXG4gICAgZW5kXG4gICAgdnNyLT4-LXZhOmV4aXQgXCJzZXNzaW9uXCIgc2NvcGVcbiAgICBkZWFjdGl2YXRlIGlpXG4gICAgZGVhY3RpdmF0ZSBzdDFcbiAgICBkZWFjdGl2YXRlIHZhIiwibWVybWFpZCI6eyJ0aGVtZSI6ImRlZmF1bHQifSwidXBkYXRlRWRpdG9yIjpmYWxzZSwiYXV0b1N5bmMiOnRydWUsInVwZGF0ZURpYWdyYW0iOmZhbHNlfQ)
+<!-- Replace https://mermaid.ink/img/ with https://mermaid.live/edit/# to edit the diagram onnline -->
 
 Integration
 ===
@@ -32,7 +40,7 @@ An integrator would only need to take the following steps to customize this solu
 
 Using the Velocity Console and a text editor:
 
-1. Add the script [six15_hud_sendText_on_scope.js](six15_hud_sendText_on_scope.js) to the project, and link it to the session scope.
+1. Add the script [six15_hud_sendText_on_scope.js](six15_hud_sendText_on_scope.js) to the project, and link it to the "session" scope.
 1. Customize [six15_hud_getSendTextData.js](six15_hud_getSendTextData.js) to extract the desired text.
     - The behavior taken will likely change based on the current page URL. See Velocity's doc about [scopes](https://help.ivanti.com/wl/help/en_US/Velocity/1.2.109/admin/settingScopes.htm) for Web.
     - Extract strings from the website. Use document.getElementById(...).innerText, or more complex JavaScript. See the the existing file for more examples.
@@ -42,6 +50,7 @@ Using the Velocity Console and a text editor:
 To test or re-deploy the modified project:
 
 1. Install and setup the Six15 ST1 app.
+    - You must run the app, accept permissions, and plug in your ST1 before launching Velocity.
 1. Re-deploy the updated wldep file into the Velocity app on your Android device.
 
 Important Files

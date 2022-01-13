@@ -3,7 +3,8 @@
 //It should be linked to the "session" scope.
 
 
-//The package name of the Six15 app may be "com.six15.launcher" is using the "HMD Service" app
+//The package name of the Six15 app may be "com.six15.launcher" is using the "HMD Service" app.
+//When using the "Six15 ST1" app (the one on the Google Play Store), the package name is "com.six15.st1_connect".
 // var six15_app_package_name = "com.six15.launcher"
 var six15_app_package_name = "com.six15.st1_connect"
 
