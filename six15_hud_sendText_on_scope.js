@@ -8,9 +8,9 @@
 // var six15_app_package_name = "com.six15.launcher"
 var six15_app_package_name = "com.six15.st1_connect"
 
-Action.startService({
+Action.launch({
     package: six15_app_package_name,
-    class: "com.six15.intent_interface.IntentInterfaceService"
+    class: "com.six15.intent_interface.IntentInterfaceActivity"
 });
 
 firstMessage = true
@@ -47,9 +47,9 @@ function injectHudScreen(event) {
                         //We don't use startService every time so an end user can manually stop the service and not
                         //have it constantly restarted against their will.
                         if (firstMessage) {
-                            Action.startService({
+                            Action.launch({
                                 package: six15_app_package_name,
-                                class: "com.six15.intent_interface.IntentInterfaceService",
+                                class: "com.six15.intent_interface.IntentInterfaceActivity",
                                 action: "com.six15.hudservice.ACTION_SEND_TEXT",
                                 extras: message
                             });
@@ -68,9 +68,9 @@ function injectHudScreen(event) {
                 errorCount += 1;
                 if (errorCount == 50) { //100ms*50 = 5 second timeout.
                     clearInterval(intervalId);
-                    Action.startService({
+                    Action.launch({
                         package: six15_app_package_name,
-                        class: "com.six15.intent_interface.IntentInterfaceService",
+                        class: "com.six15.intent_interface.IntentInterfaceActivity",
                         action: "com.six15.hudservice.ACTION_SEND_TEXT",
                         extras: [
                             { name: "text0", value: "Failed to inject six15_hud_getSendTextData.js", type: "string" },
