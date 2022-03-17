@@ -31,7 +31,12 @@
             <tr>
                 <th>Confirm Product</th>
                 <td>
-                    <input type="edit" title="Scan Product">
+                    <input type="edit" title="Scan Product" id="focusInput">
+                    <script>
+                        window.onload = function() {
+                            document.getElementById("focusInput").focus();
+                        }
+                    </script>
                 </td>
             </tr>
             </td>

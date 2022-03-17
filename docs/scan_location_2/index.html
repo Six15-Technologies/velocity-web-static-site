@@ -20,7 +20,12 @@
             <tr>
                 <th>Confirm Location</th>
                 <td>
-                    <input type="edit" title="Scan Location">
+                    <input type="edit" title="Scan Location" id="focusInput">
+                    <script>
+                        window.onload = function() {
+                            document.getElementById("focusInput").focus();
+                        }
+                    </script>
                 </td>
             </tr>
             </td>
