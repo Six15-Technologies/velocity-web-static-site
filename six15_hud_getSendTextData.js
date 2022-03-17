@@ -46,11 +46,12 @@ function getProductScreen() {
     var hud_location_str = findTableElementMatching("Location", 0)
     var hud_product_str = findTableElementMatching("Product", 0)
     var hud_description_str = findTableElementMatching("Description", 0)
+    var hud_quantity_str = findTableElementMatching("Quantity", 0)
 
     return [
         { name: "text0", value: "Scan Product (" + hud_location_str + ")", type: "string" },
         { name: "text1", value: hud_product_str, type: "string" },
-        { name: "text2", value: hud_description_str, type: "string" },
+        { name: "text2", value: [hud_description_str, "Q:" + hud_quantity_str], type: "string" },
         { name: "weight0", value: "1", type: "string" },
         { name: "weight1", value: "2", type: "string" },
         { name: "weight2", value: "1", type: "string" },
