@@ -5,6 +5,8 @@ This repository demonstrates how a [Velocity](https://www.ivanti.com/products/ve
 Be sure to see our developer documentation on [six15.engineering](https://six15.engineering), specifically the sections about the
 [Intent Interface](https://six15.engineering/intent_interface/) and [Velocity Web Integration](https://six15.engineering/intent_interface/#velocity-web).
 
+View the demo wbesite at: https://six15-technologies.github.io/velocity-web-static-site/
+
 Prerequisites
 ===
 In order to successfully run this demo you need the following:
