@@ -2,10 +2,6 @@
 //It has no arguments, and should have six15_hud_getSendTextData.js added as a resource.
 //It should be linked to the "session" scope.
 
-
-//The package name of the Six15 app may be "com.six15.launcher" is using the "HMD Service" app.
-//When using the "Six15 ST1" app (the one on the Google Play Store), the package name is "com.six15.st1_connect".
-// var six15_app_package_name = "com.six15.launcher"
 var six15_app_package_name = "com.six15.st1_connect"
 
 Action.launch({
@@ -26,21 +22,37 @@ function injectHudScreen(event) {
     var errorCount = 0;
     View.insertJavaScript("six15_hud_getSendTextData.js", "HEAD", "TOP", { 'MATCH-URL': '', 'MATCH-SOURCE': '' });
 
-    var intervalId = setInterval(function() {
-        View.evaluateJavascript("six15_hud_hasLoaded()", function(result1) {
-            if (result1 == "true") {
+    var intervalIdLoading = setInterval(function () {
+        View.evaluateJavascript("six15_hud_hasLoaded()", function (loadedResult) {
+            if (loadedResult == "true") {
                 errorCount = 0;
-                clearInterval(intervalId);
+                clearInterval(intervalIdLoading);
                 // View.toast("Injection complete for:" + scopeName);
+                var previousJsonResult = null;
 
                 function updateHudScreen(empty_event) {
                     var arg = scopeName;
-                    View.evaluateJavascript("six15_hud_getSendTextData('" + arg + "')", function(result2) {
-                        if (!result2) {
+                    View.evaluateJavascript("six15_hud_getSendTextData('" + arg + "')", function (jsonResult) {
+                        if (!jsonResult) {
                             //No message to send, don't send anything.
                             return
                         }
-                        var message = JSON.parse(result2);
+                        if (jsonResult == previousJsonResult) {
+                            // Don't send the data again.
+                            //It's best to not re-send broadcasts if we know the screen hasn't changed.
+                            return
+                        }
+                        previousJsonResult = jsonResult
+                        var message = JSON.parse(jsonResult);
+                        if (!message) {
+                            //No extras given, don't send anything.
+                            if (!firstMessage) {
+                                Action.sendBroadcast({
+                                    action: "com.six15.hudservice.ACTION_CLEAR_DISPLAY"
+                                });
+                            }
+                            return
+                        }
                         //Even though we start the service at the top of this file,
                         //we use start service again the first time an image is shown.
                         //This helps avoid a race condition where a broadcast is send before the service is running
@@ -63,11 +75,11 @@ function injectHudScreen(event) {
                     });
                 }
                 updateHudScreen({});
-                WLEvent.on("ScreenUpdated", updateHudScreen);
+                setInterval(updateHudScreen, 30)
             } else {
                 errorCount += 1;
                 if (errorCount == 50) { //100ms*50 = 5 second timeout.
-                    clearInterval(intervalId);
+                    clearInterval(intervalIdLoading);
                     Action.launch({
                         package: six15_app_package_name,
                         class: "com.six15.intent_interface.IntentInterfaceActivity",
