@@ -24,6 +24,7 @@ function updateHudScreen() {
             //No extras given, don't send anything.
             return
         }
+        message.push({ name: "smart_web_version", value: 1, type: "integer" })
         //Even though we start the service at the top of this file,
         //we use start service again the first time an image is shown.
         //This helps avoid a race condition where a broadcast is sent before the service is running
