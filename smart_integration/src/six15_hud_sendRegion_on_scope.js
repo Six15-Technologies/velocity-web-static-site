@@ -40,7 +40,8 @@ function updateHudScreen() {
         } else {
             Action.sendBroadcast({
                 action: "com.six15.hudservice.ACTION_SEND_REGIONS",
-                extras: message
+                extras: message,
+                flags: ["ReceiverForeground"]
             });
         }
         firstMessage = false;

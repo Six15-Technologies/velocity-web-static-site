@@ -25,13 +25,13 @@ function six15_hud_getSendTextData(scopeName) {
 
         return [
             { name: 'text0', value: "Scan Location", type: 'string' },
-            { name: 'bg_color0', value: "BLUE", type: 'string' },
+            { name: 'bg_color0', value: "#606060", type: 'string' },
 
             { name: 'text1', value: hudText1, type: 'string' },
             { name: 'weight1', value: "3", type: 'string' },
 
             { name: 'text2', value: hudText2, type: 'string' },
-            { name: 'bg_color2', value: "#444e83", type: 'string' },
+            { name: 'bg_color2', value: "#606060", type: 'string' },
             // There are lots of other formatting options you could send.
             // See: https://six15.engineering/intent_interface/#api-definition
         ];
@@ -50,7 +50,7 @@ function six15_hud_getSendTextData(scopeName) {
 
         return [
             { name: 'text0', value: "Scan Product", type: 'string' },
-            { name: 'bg_color0', value: "BLUE", type: 'string' },
+            { name: 'bg_color0', value: "#606060", type: 'string' },
 
             // Using max_lines with "\n" separated lines forces the lines to have the same font size.
             { name: 'text1', value: hudText1, type: 'string' },
@@ -58,7 +58,7 @@ function six15_hud_getSendTextData(scopeName) {
             { name: 'max_lines1', value: 2, type: 'integer' },
 
             { name: 'text2', value: hudText2, type: 'string' },
-            { name: 'bg_color2', value: "#444e83", type: 'string' },
+            { name: 'bg_color2', value: "#606060", type: 'string' },
 
         ];
     }
